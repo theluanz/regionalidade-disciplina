@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Product;
+use App\Models\Music;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProductController extends Controller
+class MusicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +15,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-      $products = Product::paginate();
-      return view('products.index',compact(
-          'products'
-      ));
+      $musics = Music::paginate();
+      return view('musics.index',compact(
+          'musics'
+      ));    
     }
 
     /**
@@ -29,9 +28,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-      $product = new Product();
-      return view('products.create',compact(
-          'product'
+      $music = new Music();
+      return view('musics.create',compact(
+          'music'
       ));
     }
 
@@ -44,61 +43,59 @@ class ProductController extends Controller
     public function store(Request $request)
     {
       $user = Auth::user();
-      $product = $user->products()->create($request->all());
-      return redirect()->route('products.show',['product'=>$product]);
+      $music = $user->musics()->create($request->all());
+      return redirect()->route('musics.show',['music'=>$music]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Music  $music
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Music $music)
     {
-      return view('products.show',compact(
-        'product'
+      return view('musics.show',compact(
+        'music'
     ));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Music  $music
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Music $music)
     {
-      return view('products.create',compact(
-        'product'
+      return view('musics.create',compact(
+        'music'
     ));
-    
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Music  $music
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Music $music)
     {
-      $product->user()->associate(Auth::user());
-      $product->fill($request->all())->save();        
-      return redirect()->route('products.show',['product'=>$product]);
-
+      $music->user()->associate(Auth::user());
+      $music->fill($request->all())->save();        
+      return redirect()->route('musics.show',['music'=>$music]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Music  $music
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Music $music)
     {
-        $product->delete();
-        return redirect(route('products.index'));
-    }
+      $music->delete();
+      return redirect(route('musics.index'));
+  }
 }

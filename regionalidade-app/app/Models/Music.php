@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Music extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -15,8 +15,9 @@ class Product extends Model
       return $this->belongsTo('App\Models\User');
     }
     public $fillable = [
-      'description',
-      'price', 
-      'details'
+      'artist',
+      'prod', 
+      'mix',
+      'dist'
     ];
 }

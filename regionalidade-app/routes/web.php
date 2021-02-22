@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MusicController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn () => view('welcome'));
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('products',ProductController::class)
-    ->middleware(['auth:sanctum']);
+Route::resource('products', ProductController::class)
+  ->middleware(['auth:sanctum']);
+
+Route::resource('musics', MusicController::class)
+  ->middleware(['auth:sanctum']);

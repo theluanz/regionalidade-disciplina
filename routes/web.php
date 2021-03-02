@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RuralPropertyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +24,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::resource('products',ProductController::class)
+    ->middleware(['auth:sanctum']);
+Route::resource('rural-properties', RuralPropertyController::class)
     ->middleware(['auth:sanctum']);

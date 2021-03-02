@@ -63,4 +63,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Product');
     }
+    public function ruralProperties()
+    {
+        return$this->hasMany(RuralProperty::class);
+    }
 }

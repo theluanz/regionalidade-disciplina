@@ -43,7 +43,7 @@ class RuralPropertyController extends Controller
     {
         $user = Auth::user();
         $ruralProperty = $user->ruralProperties()->create($request->all());
-        return redirect('rural-properties.show', ['ruralProperty'=>$ruralProperty]);
+        return redirect('rural-properties.show', ['rural_property'=>$ruralProperty]);
 
     }
 
@@ -83,7 +83,7 @@ class RuralPropertyController extends Controller
     {
       $ruralProperty->user()->associate(Auth::user());
       $ruralProperty->fill($request->all())->save();        
-      return redirect()->route('rural-properties.show',['ruralProperty'=>$ruralProperty]);    }
+      return redirect()->route('rural-properties.show',['rural_property'=>$ruralProperty]);    }
 
     /**
      * Remove the specified resource from storage.

@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+<<<<<<< HEAD:regionalidade-app/routes/web.php
 use App\Http\Controllers\MusicController;
+=======
+use App\Http\Controllers\RuralPropertyController;
+>>>>>>> upstream/main:routes/web.php
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +25,15 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+<<<<<<< HEAD:regionalidade-app/routes/web.php
 Route::resource('products', ProductController::class)
   ->middleware(['auth:sanctum']);
 
 Route::resource('musics', MusicController::class)
   ->middleware(['auth:sanctum']);
+=======
+Route::resource('products',ProductController::class)
+    ->middleware(['auth:sanctum']);
+Route::resource('rural-properties', RuralPropertyController::class)
+    ->middleware(['auth:sanctum']);
+>>>>>>> upstream/main:routes/web.php

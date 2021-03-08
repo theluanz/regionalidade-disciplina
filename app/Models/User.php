@@ -64,4 +64,12 @@ class User extends Authenticatable
     public function musics(){
       return $this->hasMany('App\Models\Music');
     }
+<<<<<<< HEAD:regionalidade-app/app/Models/User.php
 }
+=======
+    public function ruralProperties()
+    {
+        return$this->hasMany(RuralProperty::class);
+    }
+}
+>>>>>>> upstream/main:app/Models/User.php

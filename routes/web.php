@@ -26,7 +26,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::resource('rural-properties.products',ProductController::class)
->>>>>>> a
     ->middleware(['auth:sanctum']);
     
 Route::resource('rural-properties', RuralPropertyController::class)

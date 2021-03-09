@@ -23,7 +23,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('products',ProductController::class)
+Route::resource('rural-properties.products',ProductController::class)
     ->middleware(['auth:sanctum']);
+    
 Route::resource('rural-properties', RuralPropertyController::class)
     ->middleware(['auth:sanctum']);

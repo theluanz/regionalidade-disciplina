@@ -46,6 +46,7 @@
                     @csrf                    
                     <x-jet-button type="submit" class="float-right font-bold bg-red-700"> Deletar </x-jet-button>
                     <a href="{{ route('rural-properties.edit',['rural_property'=>$ruralProperty]) }}" class="float-right font-semibold uppercase text-xs text-white px-4 py-2 rounded-md bg-blue-700"> Editar </a>                    
+                    <a href="{{ route('rural-properties.products.index',['rural_property'=>$ruralProperty]) }}" class="float-right font-semibold uppercase text-xs text-white px-4 py-2 rounded-md bg-blue-700"> Produtos </a>                    
                 </form>
             </div>
         </div>

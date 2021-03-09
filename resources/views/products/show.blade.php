@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Produtos
+            Produtos da {{$ruralProperty->name}}
         </h2>
     </x-slot>
 
@@ -16,8 +16,14 @@
         </div>
         <a 
         class="bg-yellow-500 p-2 border-radius-2 m-10"
-        href="{{ route('products.edit',['product'=>$product]) }}">Editar</a>    
-        <form action="{{ route('products.destroy',['product'=>$product]) }}"
+        href="{{ route('rural-properties.products.edit',[
+            'rural_property'    => $ruralProperty,
+            'product'=>$product
+            ]) }}">Editar</a>    
+        <form action="{{ route('rural-properties.products.destroy',[
+            'rural_property'=> $ruralProperty,
+            'product'=>$product
+            ]) }}"
             method="POST">
             @method('delete')
             @csrf

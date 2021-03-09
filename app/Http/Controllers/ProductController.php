@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\RuralProperty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,11 +14,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $products = Product::paginate();
+    public function index(RuralProperty $ruralProperty)
+    {        
+        $products = $ruralProperty->products()->paginate();
         return view('products.index',compact(
-            'products'
+            'products',
+            'ruralProperty'
         ));
     }
 
@@ -26,11 +28,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(RuralProperty $ruralProperty)
     {
         $product = new Product();
         return view('products.create',compact(
-            'product'
+            'product',
+            'ruralProperty'
         ));
     }
 
@@ -40,11 +43,16 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, RuralProperty $ruralProperty)
     {
         $user = Auth::user();
-        $product = $user->products()->create($request->all());
-        return redirect()->route('products.show',['product'=>$product]);
+        $data = $request->all();        
+        $data['rural_property_id'] = $ruralProperty->id;
+        $product = $user->products()->create($data);
+        return redirect()->route('rural-properties.products.show',[
+            'rural_property' => $ruralProperty,
+            'product'=>$product
+        ]);
     }
 
     /**
@@ -53,10 +61,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(RuralProperty $ruralProperty, Product $product)
     {
         return view('products.show',compact(
-            'product'
+            'product',
+            'ruralProperty'
         ));
     }
 
@@ -66,10 +75,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(RuralProperty $ruralProperty , Product $product)
     {        
         return view('products.create',compact(
-            'product'
+            'product',
+            'ruralProperty'
         ));
     }
 
@@ -80,11 +90,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, RuralProperty $ruralProperty , Product $product)
     {
         $product->user()->associate(Auth::user());
-        $product->fill($request->all())->save();        
-        return redirect()->route('products.show',['product'=>$product]);
+        $product->fill($request->all())->save();                
+        return redirect()->route('rural-properties.products.show',[
+            'rural_property'=>$ruralProperty,
+            'product'=>$product
+            ]);
     }
 
     /**
@@ -93,9 +106,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(RuralProperty $ruralProperty, Product $product)
     {
         $product->delete();
-        return redirect()->route('products.index');
+        return redirect()->route('rural-properties.products.index',[
+            'rural_property'    => $ruralProperty
+        ]);
     }
 }

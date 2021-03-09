@@ -14,11 +14,27 @@ class Product extends Model
     public $fillable = [
         'description',
         'price',
-        'details'
+        'details',
+        'unit',
+        'minimum_stock',
+        'rural_property_id'
     ];
 
     public function user()
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function getUnits()
+    {
+        return [
+            'l'     =>      'litros',
+            'ml'    =>      'mililitros',
+            'g'     =>      'gramas',
+            'kg'    =>      'quilogramas',
+            'un'    =>      'unidade',
+            'pct'   =>      'pacote'
+        ];
+    }
+
 }

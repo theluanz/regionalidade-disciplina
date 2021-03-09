@@ -1,11 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
-<<<<<<< HEAD:regionalidade-app/routes/web.php
-use App\Http\Controllers\MusicController;
-=======
 use App\Http\Controllers\RuralPropertyController;
->>>>>>> upstream/main:routes/web.php
 use Illuminate\Support\Facades\Route;
 
 /*

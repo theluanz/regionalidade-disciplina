@@ -11,12 +11,33 @@ class Product extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function user(){
-      return $this->belongsTo('App\Models\User');
-    }
+
     public $fillable = [
-      'description',
-      'price', 
-      'details'
+        'description',
+        'price',
+        'details',
+        'unit',
+        'minimum_stock',
+        'rural_property_id',
+        'quantity'
+
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function getUnits()
+    {
+        return [
+            'l'     =>      'litros',
+            'ml'    =>      'mililitros',
+            'g'     =>      'gramas',
+            'kg'    =>      'quilogramas',
+            'un'    =>      'unidade',
+            'pct'   =>      'pacote'
+        ];
+    }
+
 }

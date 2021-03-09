@@ -25,6 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+<<<<<<< HEAD
 <<<<<<< HEAD:regionalidade-app/routes/web.php
 Route::resource('products', ProductController::class)
   ->middleware(['auth:sanctum']);
@@ -33,7 +34,11 @@ Route::resource('musics', MusicController::class)
   ->middleware(['auth:sanctum']);
 =======
 Route::resource('products',ProductController::class)
+=======
+Route::resource('rural-properties.products',ProductController::class)
+>>>>>>> a
     ->middleware(['auth:sanctum']);
+    
 Route::resource('rural-properties', RuralPropertyController::class)
     ->middleware(['auth:sanctum']);
 >>>>>>> upstream/main:routes/web.php

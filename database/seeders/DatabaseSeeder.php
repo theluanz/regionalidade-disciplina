@@ -18,10 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)->create();
         Product::factory(30)->create();
-<<<<<<< HEAD:regionalidade-app/database/seeders/DatabaseSeeder.php
-        Music::factory(30)->create();
-=======
         RuralProperty::factory(20)->create();
->>>>>>> upstream/main:database/seeders/DatabaseSeeder.php
+        Product::factory(30)->create();        
+
     }
 }

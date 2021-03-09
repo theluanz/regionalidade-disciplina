@@ -43,7 +43,7 @@ class RuralPropertyController extends Controller
     {
         $user = Auth::user();
         $ruralProperty = $user->ruralProperties()->create($request->all());
-        return redirect('rural-properties.show', ['rural_property'=>$ruralProperty]);
+        return redirect()->route('rural-properties.show', ['rural_property'=>$ruralProperty]);
 
     }
 

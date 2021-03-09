@@ -17,7 +17,9 @@ class Product extends Model
         'details',
         'unit',
         'minimum_stock',
-        'rural_property_id'
+        'rural_property_id',
+        'quantity'
+
     ];
 
     public function user()

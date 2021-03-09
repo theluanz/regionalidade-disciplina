@@ -11,6 +11,7 @@ class RuralProperty extends Model
 
     protected $fillable = [
       'name',
+      'city',
       'street',
       'zip_code',
       'latitude',

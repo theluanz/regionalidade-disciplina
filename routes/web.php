@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RuralPropertyController;
+use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,7 @@ Route::resource('rural-properties.products',ProductController::class)
     ->middleware(['auth:sanctum']);
     
 Route::resource('rural-properties', RuralPropertyController::class)
+    ->middleware(['auth:sanctum']);
+
+    Route::resource('shopping-cart', ShoppingCartController::class)
     ->middleware(['auth:sanctum']);

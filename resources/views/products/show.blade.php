@@ -49,6 +49,14 @@
                     <a href="{{ route('rural-properties.products.edit',['product'=>$product, 'rural_property'=>$ruralProperty]) }}" class="float-right font-semibold uppercase text-xs text-white px-4 py-2 rounded-md bg-blue-700"> Editar </a>                    
                     <a href="{{ route('rural-properties.products.index',['product'=>$product, 'rural_property'=>$ruralProperty]) }}" class="float-right font-semibold uppercase text-xs text-white px-4 py-2 rounded-md bg-blue-700"> Produtos </a>                    
                 </form>
+                <form action="{{ route('shopping-cart.store',['product'=>$product]) }}" method="POST">
+                  @csrf
+                  <x-jet-input id="quantity" class="block mb-5 w-full" type="number" min="1" max="5000" step="1"
+                        name="quantity" :value="1" required />
+                    <x-jet-input id="product_id" class="block mb-5 w-full" type="hidden" min="1" max="5000" step="1"
+                        name="product_id" :value="$product->id" required />
+                    <x-jet-button type="submit" class="float-right font-semibold uppercase text-xs text-white px-4 py-2 rounded-md bg-green-700"> Adicionar ao Carrinho</x-jet-button>                    
+                </form>
             </div>
         </div>
     </div>

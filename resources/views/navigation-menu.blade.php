@@ -19,6 +19,9 @@
                     <x-jet-nav-link href="{{ route('rural-properties.index') }}" :active="request()->routeIs('rural-properties.index')">
                         {{ __('Rural Properties') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('shopping-cart.index') }}" :active="request()->routeIs('shopping-cart.index')">
+                        {{ __('Carrinho de Compras') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 

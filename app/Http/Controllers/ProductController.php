@@ -98,7 +98,7 @@ class ProductController extends Controller
         return redirect()->route('rural-properties.products.show',[
             'rural_property'=>$ruralProperty,
             'product'=>$product
-            ]);
+        ]);
     }
 
     /**

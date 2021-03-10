@@ -22,6 +22,9 @@ class Product extends Model
         'quantity'
 
     ];
+    public function ruralProperty(){
+      return $this->belongsTo(RuralProperty::class);
+    }
 
     public function user()
     {

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+
 use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShoppingCartController extends Controller
 {
@@ -14,7 +17,10 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
-        //
+      $user= Auth::user();
+      $shoppingCarts = $user->shoppingCart;
+      return view('shopping-cart.index', compact('shoppingCarts'));
+
     }
 
     /**
@@ -22,9 +28,11 @@ class ShoppingCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Product $product, Request $request)
     {
-        //
+        $shoppingCart = new ShoppingCart();
+        return view('shopping-cart.index', 
+        compact('shoppingCart'));
     }
 
     /**
@@ -35,7 +43,9 @@ class ShoppingCartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $user = Auth::user();
+      $shoppingCart= $user->shoppingCart()->create($request->all());
+      return redirect()->route('shopping-cart.index');
     }
 
     /**

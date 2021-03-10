@@ -66,4 +66,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(RuralProperty::class);
     }
+    public function shoppingCart()
+    {
+        return $this->hasMany(ShoppingCart::class);
+    }
 }

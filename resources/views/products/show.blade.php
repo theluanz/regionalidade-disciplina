@@ -60,7 +60,20 @@
             </div>
         </div>
     </div>
-
-
-
+    <div class="p-10">
+        <form action="{{ route('rural-properties.products.photos.store',[
+            'rural_property'    => $ruralProperty,
+            'product'           => $product
+        ]) }}"  method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="photo">
+            <button type="submit">Enviar foto</button>
+        </form>
+    </div>
+    <div class="p-10">
+        @foreach ($product->photos as $photo)
+            <img src="{{ asset("storage/{$photo->url}") }}" alt="" width="100px">
+        @endforeach
+    </div>
+    
 </x-app-layout>

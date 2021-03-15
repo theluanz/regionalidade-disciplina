@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\RuralPropertyController;
-use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\RuralPropertyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +23,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('rural-properties.products',ProductController::class)
-    ->middleware(['auth:sanctum']);
-    
-Route::resource('rural-properties', RuralPropertyController::class)
-    ->middleware(['auth:sanctum']);
+Route::middleware(['auth:sanctum']) 
+    ->group(
+        function () {
+            Route::resource('rural-properties.products',ProductController::class);
+            Route::resource('rural-properties.products.photos',PhotoController::class)->only(['destroy','store']);
+            Route::resource('rural-properties', RuralPropertyController::class);
+        }
+    );
+
+
 
     Route::resource('shopping-cart', ShoppingCartController::class)
     ->middleware(['auth:sanctum']);

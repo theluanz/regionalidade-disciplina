@@ -31,6 +31,11 @@ class Product extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     public function getUnits()
     {
         return [

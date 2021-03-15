@@ -18,7 +18,10 @@
             @foreach($products as $product)
             <tr class="bg-blue-200 text-blue-900">
               <td>
-                  <a href="{{route('rural-properties.show', ['rural_property'=> $ruralProperty ])}}">
+                  <a href="{{route('rural-properties.products.show', [
+                  'rural_property'=> $ruralProperty,
+                  'product' => $product
+                  ])}}">
                       {{$product->description}}
                   </a>
               </td>

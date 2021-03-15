@@ -90,6 +90,7 @@ class ShoppingCartController extends Controller
      */
     public function destroy(ShoppingCart $shoppingCart)
     {
-        //
+        $shoppingCart->delete();
+        return redirect()->route('shopping-cart.index');
     }
 }

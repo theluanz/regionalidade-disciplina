@@ -22,6 +22,13 @@
                   </a>
               </td>
               <td>{{ $shoppingCart->product->price}}</td>
+              <td>
+                <form action="{{ route('shopping-cart.destroy',['shopping_cart'=>$shoppingCart ])}}) }}" method="POST">
+                @method('delete')
+                @csrf 
+                      <x-jet-button type="submit" class="float-right font-semibold uppercase text-xs text-white px-4 py-2 rounded-md bg-red-700">Remover</x-jet-button> 
+                </form>
+              </td>
             </tr>
             @endforeach
           </tbody>

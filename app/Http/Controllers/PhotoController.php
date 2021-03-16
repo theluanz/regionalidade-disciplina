@@ -6,6 +6,7 @@ use App\Models\Photo;
 use App\Models\Product;
 use App\Models\RuralProperty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
@@ -36,6 +37,8 @@ class PhotoController extends Controller
      */
     public function destroy(RuralProperty $ruralProperty, Product $product, Photo $photo)
     {
-        //
+        Storage::delete('public/'.$photo->url);
+        $photo->delete();
+        return back();
     }
 }

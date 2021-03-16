@@ -34,6 +34,39 @@
                 </dl>
                                                                                                   
 
+                <div>
+                  <div class="flex flex-wrap justify-around	">
+                    @foreach ($product->photos as $photo)
+                    <div class="w-2/5 mx-1 text-center">
+                        <img src="{{ asset("storage/{$photo->url}") }}" alt=""  class="rounded-md">
+                        <form action="{{ route('rural-properties.products.photos.destroy',[
+
+                          'rural_property'    => $product->ruralProperty,
+
+                          'product'=>$product,
+
+                          'photo'=> $photo
+
+                          ]) }}" method="POST">
+                          @method('delete')
+                          @csrf                    
+                            <x-jet-button type="submit" class="font-bold bg-red-700 my-0.5"> Deletar </x-jet-button>
+                        </form>
+                    </div>
+                    @endforeach
+                  </div>
+                
+                <div class="py-10">
+                    <form action="{{ route('rural-properties.products.photos.store',[
+                        'rural_property'    => $ruralProperty,
+                        'product'           => $product
+                    ]) }}"  method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="photo">
+                        <x-jet-button type="submit" class="font-bold bg-green-700 my-5">Enviar foto</x-jet-button>
+                    </form>
+                </div>
+                </div>
                 <p class="text-xs">Criado por {{ $ruralProperty->user->name }}</p>
 
                 <form action="{{ route('rural-properties.products.destroy',[
@@ -46,7 +79,7 @@
                     @method('delete')
                     @csrf                    
                     <x-jet-button type="submit" class="float-right font-bold bg-red-700"> Deletar </x-jet-button>
-                    <a href="{{ route('rural-properties.products.edit',['product'=>$product, 'rural_property'=>$ruralProperty]) }}" class="float-right font-semibold uppercase text-xs text-white px-4 py-2 rounded-md bg-blue-700"> Editar </a>                    
+                    <a href="{{ route('rural-properties.products.edit',['product'=>$product, 'rural_property'=>$ruralProperty]) }}" class="float-right font-semibold uppercase text-xs text-white px-4 py-2 rounded-md bg-blue-700 mx-2"> Editar </a>                    
                     <a href="{{ route('rural-properties.products.index',['product'=>$product, 'rural_property'=>$ruralProperty]) }}" class="float-right font-semibold uppercase text-xs text-white px-4 py-2 rounded-md bg-blue-700"> Produtos </a>                    
                 </form>
                 <form action="{{ route('shopping-cart.store',['product'=>$product]) }}" method="POST">
@@ -59,21 +92,6 @@
                 </form>
             </div>
         </div>
-    </div>
-    <div class="p-10">
-        <form action="{{ route('rural-properties.products.photos.store',[
-            'rural_property'    => $ruralProperty,
-            'product'           => $product
-        ]) }}"  method="POST" enctype="multipart/form-data">
-            @csrf
-            <input type="file" name="photo">
-            <button type="submit">Enviar foto</button>
-        </form>
-    </div>
-    <div class="p-10">
-        @foreach ($product->photos as $photo)
-            <img src="{{ asset("storage/{$photo->url}") }}" alt="" width="100px">
-        @endforeach
     </div>
     
 </x-app-layout>
